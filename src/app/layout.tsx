@@ -21,10 +21,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body
-                className={`${poppins.className} min-h-screen bg-gray-900 w-full`}
-            >
-                {children}
+            <body className={`${poppins.className} min-h-screen  w-full`}>
+                <div className='bg-gray-900 max-w-xl mx-auto min-h-screen'>
+                    {children}
+                </div>
             </body>
         </html>
     );
