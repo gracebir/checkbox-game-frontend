@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useCheckboxes } from "@/_hooks/useCheckBoxes";
 import { useUpdateCheckbox } from "@/_hooks/useUpdateCheckbox";
 import CheckBox from "@/_components/CheckBox";
@@ -9,34 +9,12 @@ const Game = () => {
     const userName: string = localStorage.getItem("userName")!;
     const userId: string = localStorage.getItem("userId")!;
     const [checkedCount, setCheckedCount] = useState(0);
-    const [checkboxStates, setCheckboxStates] = useState({});
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
         useCheckboxes();
     const { mutate: updateCheckbox } = useUpdateCheckbox();
 
-    const observerElem = useRef<HTMLDivElement | null>(null);
-    // const checkedCount = data?.checkedCount || 0;
-    console.log(data);
-
-    // Update the initial state of checkbox states from the data
-    useEffect(() => {
-        if (data) {
-            const initialCheckboxStates = {};
-            data.pages.forEach((page) => {
-                page.checkboxes.forEach((checkbox: any) => {
-                    //@ts-ignore
-                    initialCheckboxStates[checkbox.checkboxId] =
-                        checkbox.checked;
-                });
-            });
-            setCheckboxStates(initialCheckboxStates);
-            const initialCheckedCount = Object.values(
-                initialCheckboxStates
-            ).filter(Boolean).length;
-            setCheckedCount(initialCheckedCount);
-        }
-    }, [data]);
+    // const observerElem = useRef<HTMLDivElement | null>(null);
 
     const handleCheckboxChange = async (
         checkboxId: string,
@@ -48,12 +26,6 @@ const Game = () => {
                 checked,
                 userId: userId,
             }); // Update the checkbox state
-
-            // Update local state
-            setCheckboxStates((prevStates) => ({
-                ...prevStates,
-                [checkboxId]: checked,
-            }));
 
             setCheckedCount((prevCount) =>
                 checked ? prevCount + 1 : prevCount - 1
