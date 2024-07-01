@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import ProviderLayout from "@/_components/ProviderLayout";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -21,10 +22,15 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body className={`${poppins.className} min-h-screen  w-full`}>
-                <div className='bg-gray-900 max-w-xl mx-auto min-h-screen'>
-                    {children}
-                </div>
+            <body
+                suppressHydrationWarning={true}
+                className={`${poppins.className} min-h-screen  w-full`}
+            >
+                <ProviderLayout>
+                    <div className='bg-gray-900 max-w-xl mx-auto min-h-screen'>
+                        {children}
+                    </div>
+                </ProviderLayout>
             </body>
         </html>
     );
