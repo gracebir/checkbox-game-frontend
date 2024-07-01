@@ -38,6 +38,7 @@ export default function Signin() {
                     if (response.data) {
                         localStorage.setItem("userEmail", response.data.email);
                         localStorage.setItem("userId", response.data.userId);
+                        localStorage.setItem("userName", response.data.name);
                     }
                     console.log(response.data);
                 } catch (error) {
