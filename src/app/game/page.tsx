@@ -4,12 +4,13 @@ import React, { useState, useCallback } from "react";
 import { useCheckboxes } from "@/_hooks/useCheckBoxes";
 import { useUpdateCheckbox } from "@/_hooks/useUpdateCheckbox";
 import CheckBox from "@/_components/CheckBox";
+import { getUserId, getUsername } from "@/utils/localValue";
 
 const isBrowser = typeof window !== "undefined";
 
 const Game = () => {
-    const userName: string = isBrowser ? localStorage.getItem("userName")! : "";
-    const userId: string = isBrowser ? localStorage.getItem("userId")! : "";
+    const userName: string = getUsername()!;
+    const userId: string = getUserId()!;
     const [checkedCount, setCheckedCount] = useState(0);
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
