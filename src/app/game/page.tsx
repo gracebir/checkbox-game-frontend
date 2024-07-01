@@ -5,9 +5,11 @@ import { useCheckboxes } from "@/_hooks/useCheckBoxes";
 import { useUpdateCheckbox } from "@/_hooks/useUpdateCheckbox";
 import CheckBox from "@/_components/CheckBox";
 
+const isBrowser = typeof window !== "undefined";
+
 const Game = () => {
-    const userName: string = localStorage.getItem("userName")!;
-    const userId: string = localStorage.getItem("userId")!;
+    const userName: string = isBrowser ? localStorage.getItem("userName")! : "";
+    const userId: string = isBrowser ? localStorage.getItem("userId")! : "";
     const [checkedCount, setCheckedCount] = useState(0);
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
