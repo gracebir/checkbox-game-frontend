@@ -3,11 +3,7 @@
 import React from "react";
 
 const Game = () => {
-    return (
-        <main className='bg-gray-900 max-w-xl mx-auto h-full'>
-            <h1>hell</h1>
-        </main>
-    );
+    return <main className='text-white py-12 px-6 flex flex-col gap-10'></main>;
 };
 
 export default Game;
