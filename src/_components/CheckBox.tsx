@@ -29,7 +29,7 @@ export default function CheckBox({
                 onChange={handleChecked}
                 className='p-6 rounded-2xl'
             />
-            <span className='ml-2'>{checkCount}</span>{" "}
+            {/* <span className='ml-2'>{checkCount}</span>{" "} */}
             {/* Display checkCount */}
         </label>
     );
