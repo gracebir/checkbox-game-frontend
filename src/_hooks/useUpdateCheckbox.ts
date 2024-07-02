@@ -7,15 +7,12 @@ import axios from "@/utils/axios";
 const updateCheckbox = async ({
     checkboxId,
     checked,
-    userId,
 }: {
     checkboxId: string;
     checked: boolean;
-    userId: string;
 }) => {
     const response = await axios.put(`/checkboxes/${checkboxId}`, {
         checked,
-        userId,
     });
     return response.data;
 };

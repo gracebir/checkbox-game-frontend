@@ -4,13 +4,8 @@ import React, { useState, useCallback } from "react";
 import { useCheckboxes } from "@/_hooks/useCheckBoxes";
 import { useUpdateCheckbox } from "@/_hooks/useUpdateCheckbox";
 import CheckBox from "@/_components/CheckBox";
-import { getUserId, getUsername } from "@/utils/localValue";
-
-const isBrowser = typeof window !== "undefined";
 
 const Game = () => {
-    const userName: string = getUsername()!;
-    const userId: string = getUserId()!;
     const [checkedCount, setCheckedCount] = useState(0);
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -27,7 +22,6 @@ const Game = () => {
             await updateCheckbox({
                 checkboxId,
                 checked,
-                userId: userId,
             }); // Update the checkbox state
 
             setCheckedCount((prevCount) =>
@@ -60,8 +54,7 @@ const Game = () => {
     return (
         <main className='text-white py-12 px-6 flex flex-col gap-4'>
             <div className='bg-gray-700 w-full rounded-md p-4'>
-                Player:{" "}
-                <span className='font-bold text-gray-300'>@{userName}</span>
+                Player: <span className='font-bold text-gray-300'>@John</span>
                 <div className='bg-gray-800 w-full mt-4 rounded-md px-6 py-3 flex flex-col items-center gap-4'>
                     <span className='text-2xl font-bold text-center w-full'>
                         Box Checked
